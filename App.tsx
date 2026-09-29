@@ -54,7 +54,6 @@ function HomeScreen() {
   const numColumns = isTile ? 2 : 1;
 
   return (
-    // 1b
     <SafeAreaView style={styles.container}>
       {/*1c*/}
       <View style={styles.header}>
@@ -70,7 +69,7 @@ function HomeScreen() {
       {loading ? (
         // Câu 2c
         <View style={styles.center}>
-          <ActivityIndicator size="large" color="#e50914" />
+          <ActivityIndicator/>
           <Text>Đang tải...</Text>
         </View>
       ) : (

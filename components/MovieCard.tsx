@@ -79,70 +79,65 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     elevation: 2,
   },
-  // layout="tile": bố cục dọc, rộng 48% để 2 cột đều nhau, item lẻ không bị giãn
-  cardTile: {
-    flexDirection: 'column',
-    width: '48%',
-    padding: 0,
-    overflow: 'hidden',
-  },
-  poster: {
-    width: 70,
-    height: 100,
-    borderRadius: 6,
-    backgroundColor: '#ddd',
-  },
-  posterWrapTile: {
-    width: '100%',
-  },
-  posterTile: {
-    width: '100%',
-    height: undefined,
-    aspectRatio: 2 / 3,
-    borderRadius: 0,
-  },
-  ratingBadge: {
-    position: 'absolute',
-    top: 6,
-    left: 6,
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 6,
-  },
-  ratingBadgeText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 12,
-  },
-  info: {
-    flex: 1,
-    marginLeft: 12,
-    justifyContent: 'center',
-  },
-  infoTile: {
-    flex: 0,
-    marginLeft: 0,
-    padding: 8,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#222',
-    marginBottom: 4,
-  },
-  meta: {
-    fontSize: 13,
-    color: '#666',
-  },
-  rating: {
-    fontSize: 14,
-    marginTop: 4,
-  },
-  status: {
-    fontSize: 13,
-    marginTop: 4,
-  },
+  // layout="tile": bố cục dọc
+  cardTile: { 
+    width: '48%', 
+    padding: 0, 
+    overflow: 'hidden', 
+  }, 
+  poster: { 
+    width: 70, 
+    height: 100, 
+    borderRadius: 6, 
+    backgroundColor: '#ddd', 
+  }, 
+  posterWrapTile: { 
+    width: '100%', 
+  }, 
+  posterTile: { 
+    width: '100%', 
+    aspectRatio: 2 / 3, 
+  }, 
+  ratingBadge: { 
+    position: 'absolute', 
+    top: 6, 
+    left: 6, 
+    backgroundColor: 'rgba(0,0,0,0.7)', 
+    paddingHorizontal: 6, 
+    paddingVertical: 2, 
+    borderRadius: 6, 
+  }, 
+  ratingBadgeText: { 
+    color: '#fff', 
+    fontWeight: 'bold', 
+    fontSize: 12, 
+  }, 
+  info: { 
+    flex: 1, 
+    marginLeft: 12, 
+    justifyContent: 'center', 
+  }, 
+  infoTile: { 
+    padding: 8, 
+  }, 
+  title: { 
+    fontSize: 16, 
+    fontWeight: 'bold', 
+    color: '#222', 
+    marginBottom: 4, 
+  }, 
+  meta: { 
+    fontSize: 13, 
+    color: '#666', 
+  }, 
+  rating: { 
+    fontSize: 14, 
+    marginTop: 4, 
+  }, 
+  status: { 
+    fontSize: 13, 
+    marginTop: 4, 
+  },  
 });
 
 // Câu 3d
