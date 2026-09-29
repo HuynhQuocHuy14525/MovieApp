@@ -1,9 +1,8 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react-native';
-import MovieCard, { Movie } from '../components/MovieCard';
+import MovieCard from '../components/MovieCard';
 
-// Dữ liệu giả
-const mockMovie: Movie = {
+const movie = {
   id: '1',
   title: 'Inception',
   genre: 'Sci-Fi',
@@ -13,48 +12,32 @@ const mockMovie: Movie = {
   isShowing: true,
 };
 
-describe('MovieCard', () => {
-  // a. Test render
-  it('hiển thị đúng tên phim và điểm đánh giá đúng định dạng', async () => {
-    await render(<MovieCard movie={mockMovie} onSelect={jest.fn()} />);
-    expect(screen.getByText('Inception')).toBeTruthy();
-    expect(screen.getByText('⭐ 8.0')).toBeTruthy(); // rating 8 → "⭐ 8.0"
-  });
+test('render ten phim va rating', async () => {
+  await render(<MovieCard movie={movie} onSelect={jest.fn()} />);
+  expect(screen.getByText('Inception')).toBeTruthy();
+  expect(screen.getByText('⭐ 8.0')).toBeTruthy();
+});
 
-  // b. Test layout
-  it('layout="row" có hiển thị thể loại', async () => {
-    await render(<MovieCard movie={mockMovie} layout="row" onSelect={jest.fn()} />);
-    expect(screen.queryByText(/Sci-Fi/)).not.toBeNull();
-  });
+test('layout row co the loai, tile khong co', async () => {
+  await render(<MovieCard movie={movie} layout="row" onSelect={jest.fn()} />);
+  expect(screen.queryByText('Sci-Fi')).not.toBeNull();
 
-  it('layout="tile" không hiển thị thể loại', async () => {
-    await render(<MovieCard movie={mockMovie} layout="tile" onSelect={jest.fn()} />);
-    expect(screen.queryByText(/Sci-Fi/)).toBeNull();
-  });
+  await render(<MovieCard movie={movie} layout="tile" onSelect={jest.fn()} />);
+  expect(screen.queryByText('Sci-Fi')).toBeNull();
+});
 
-  // c. Test trạng thái
-  it('isShowing: true hiển thị ✅', async () => {
-    await render(
-      <MovieCard movie={{ ...mockMovie, isShowing: true }} onSelect={jest.fn()} />
-    );
-    expect(screen.queryByText(/✅/)).not.toBeNull();
-    expect(screen.queryByText(/❌/)).toBeNull();
-  });
+test('trang thai dang chieu / ngung chieu', async () => {
+  await render(<MovieCard movie={movie} onSelect={jest.fn()} />);
+  expect(screen.getByText('✅')).toBeTruthy();
 
-  it('isShowing: false hiển thị ❌', async () => {
-    await render(
-      <MovieCard movie={{ ...mockMovie, isShowing: false }} onSelect={jest.fn()} />
-    );
-    expect(screen.queryByText(/❌/)).not.toBeNull();
-    expect(screen.queryByText(/✅/)).toBeNull();
-  });
+  await render(<MovieCard movie={{ ...movie, isShowing: false }} onSelect={jest.fn()} />);
+  expect(screen.getByText('❌')).toBeTruthy();
+});
 
-  // d. Test sự kiện
-  it('nhấn thẻ gọi onSelect đúng 1 lần với movie.id', async () => {
-    const onSelect = jest.fn();
-    await render(<MovieCard movie={mockMovie} onSelect={onSelect} />);
-    await fireEvent.press(screen.getByText('Inception'));
-    expect(onSelect).toHaveBeenCalledTimes(1);
-    expect(onSelect).toHaveBeenCalledWith('1');
-  });
+test('nhan vao goi onSelect', async () => {
+  const onSelect = jest.fn();
+  await render(<MovieCard movie={movie} onSelect={onSelect} />);
+  await fireEvent.press(screen.getByText('Inception'));
+  expect(onSelect).toHaveBeenCalledTimes(1);
+  expect(onSelect).toHaveBeenCalledWith('1');
 });
